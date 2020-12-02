@@ -1,34 +1,55 @@
 clear all;
 close all;
+
 ncoeff = 12;          %MFCC参数阶数
 N = 10;               %10个数字
-fs=16000;             %采样频率                
+fs=16000;             %采样频率
 duration2 = 2;        %录音时长
 k = 3;                %训练样本的人数
 
-speech = audiorecorder(fs,16,1); 
-disp('Press key to record 2 second'); 
+
+speech = audiorecorder(fs,16,1);
+disp('Press key to record 2 second');
 pause
-disp('Recording.'); 
-recordblocking(speech,duration2)             % duration*fs 为采样点数 
-speechIn=getaudiodata(speech);
+disp('Recording.');
+recordblocking(speech,duration2)             % duration*fs 为采样点数
 disp('Finished recording.');
-speechIn = my_vad(speechIn);                    %端点检测 
-rMatrix1 = mfccf(ncoeff,speechIn,fs);            %采用MFCC系数作为特征矢量
-rMatrix = CMN(rMatrix1);                         %归一化处理                    
+speechIn=getaudiodata(speech);
 
-Sco = DTWScores(rMatrix,N);                      %计算DTW值
-[SortedScores,EIndex] = sort(Sco,2);             %按行递增排序，并返回对应的原始次序
-Nbr = EIndex(:,1:2)                              %得到每个模板匹配的2个最低值对应的次序
+[num] = process(speechIn);
+disp(num2str(num));
 
-[Modal,Freq] = mode(Nbr(:));                      %返回出现频率最高的数Modal及其出现频率Freq
+% t1 = clock;
+% q = ['D:\2020-fall\DSP\homework3\DTW\SpeechData\p5\6.wav'];
+% [speechIn,FS] = audioread(q);
+% [num] = process(speechIn);
+% disp(num);
+% t2 = clock;
+% t = etime(t2,t1);
 
-Word = char('zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine'); 
-if mean(abs(speechIn)) < 0.01
-    fprintf('No microphone connected or you have not said anything.\n');
-elseif (Freq <2)                                %频率太低不确定
-    fprintf('The word you have said could not be properly recognised.\n');
-else
-    fprintf('You have just said %s.\n',Word(Modal,:)); 
-end
+%%% 测试模块
+% Number_str = struct('zero',0,'One',1,'Two',2,'Three',3,'Four',4,'Five',5,'Six',6,'Seven',7,'Eight',8,'nine',9);
+% dir = 'D:\2020-fall\DSP\homework3\DTW\SpeechData\';
+% 
+% t1 = clock;
+% P = zeros(10,10);
+% for i = 1:10
+%     for j = 0:9
+%         doc_path = [dir,'p',num2str(i),'\',num2str(j),'.wav'];
+%         [speechIn,FS] = audioread(doc_path);
+%         [num] = process(speechIn);
+%         num = strrep(num,' ','');
+%         answer = j;
+%         Number_str.(num);
+%         if Number_str.(num) == answer
+%             P(i,j+1) = 1;
+%             disp(['correct! ',num2str(j), '->',num2str(Number_str.(num))]);
+%         else
+%             disp(['wrong! ',num2str(j), '->',num2str(Number_str.(num))]);
+%         end
+%     end
+% end
+% t2 = clock;
+% t = etime(t2,t1);
+% disp(t)
 

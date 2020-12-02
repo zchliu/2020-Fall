@@ -4,39 +4,102 @@ function AllScores = DTWScores(rMatrix,N)
 %输出参数：AllScores为
 
 %初始化DTW判别矩阵
-Scores1 = zeros(1,N);                
-Scores2 = zeros(1,N);
-Scores3 = zeros(1,N);
-
-
-%加载模板数据
+Scores1 = zeros(1,N);
 s1 = load('Vectors1.mat');
 fMatrixall1 = struct2cell(s1);
-s2 = load('Vectors2.mat');
-fMatrixall2 = struct2cell(s2);
-s3 = load('Vectors3.mat');
-fMatrixall3 = struct2cell(s3);
-
-
-%计算DTW
 for i = 1:N
     fMatrix1 = fMatrixall1{i,1};
     fMatrix1 = CMN(fMatrix1);
     Scores1(i) = myDTW(fMatrix1,rMatrix);
 end
+AllScores(:,1) = Scores1;
 
-for j = 1:N
-    fMatrix2 = fMatrixall2{j,1};
-    fMatrix2 = CMN(fMatrix2);
-    Scores2(j) = myDTW(fMatrix2,rMatrix);
+Scores1 = zeros(1,N);
+s1 = load('Vectors2.mat');
+fMatrixall1 = struct2cell(s1);
+for i = 1:N
+    fMatrix1 = fMatrixall1{i,1};
+    fMatrix1 = CMN(fMatrix1);
+    Scores1(i) = myDTW(fMatrix1,rMatrix);
 end
+AllScores(:,2) = Scores1;
 
-for k= 1:N
-    fMatrix3 = fMatrixall3{k,1};
-    fMatrix3 = CMN(fMatrix3);
-    Scores3(k) = myDTW(fMatrix3,rMatrix);
+Scores1 = zeros(1,N);
+s1 = load('Vectors3.mat');
+fMatrixall1 = struct2cell(s1);
+for i = 1:N
+    fMatrix1 = fMatrixall1{i,1};
+    fMatrix1 = CMN(fMatrix1);
+    Scores1(i) = myDTW(fMatrix1,rMatrix);
 end
+AllScores(:,3) = Scores1;
 
+Scores1 = zeros(1,N);
+s1 = load('Vectors4.mat');
+fMatrixall1 = struct2cell(s1);
+for i = 1:N
+    fMatrix1 = fMatrixall1{i,1};
+    fMatrix1 = CMN(fMatrix1);
+    Scores1(i) = myDTW(fMatrix1,rMatrix);
+end
+AllScores(:,4) = Scores1;
 
-AllScores = [Scores1;Scores2;Scores3];
+Scores1 = zeros(1,N);
+s1 = load('Vectors5.mat');
+fMatrixall1 = struct2cell(s1);
+for i = 1:N
+    fMatrix1 = fMatrixall1{i,1};
+    fMatrix1 = CMN(fMatrix1);
+    Scores1(i) = myDTW(fMatrix1,rMatrix);
+end
+AllScores(:,5) = Scores1;
 
+Scores1 = zeros(1,N);
+s1 = load('Vectors6.mat');
+fMatrixall1 = struct2cell(s1);
+for i = 1:N
+    fMatrix1 = fMatrixall1{i,1};
+    fMatrix1 = CMN(fMatrix1);
+    Scores1(i) = myDTW(fMatrix1,rMatrix);
+end
+AllScores(:,6) = Scores1;
+
+Scores1 = zeros(1,N);
+s1 = load('Vectors7.mat');
+fMatrixall1 = struct2cell(s1);
+for i = 1:N
+    fMatrix1 = fMatrixall1{i,1};
+    fMatrix1 = CMN(fMatrix1);
+    Scores1(i) = myDTW(fMatrix1,rMatrix);
+end
+AllScores(:,7) = Scores1;
+
+Scores1 = zeros(1,N);
+s1 = load('Vectors8.mat');
+fMatrixall1 = struct2cell(s1);
+for i = 1:N
+    fMatrix1 = fMatrixall1{i,1};
+    fMatrix1 = CMN(fMatrix1);
+    Scores1(i) = myDTW(fMatrix1,rMatrix);
+end
+AllScores(:,8) = Scores1;
+
+Scores1 = zeros(1,N);
+s1 = load('Vectors9.mat');
+fMatrixall1 = struct2cell(s1);
+for i = 1:N
+    fMatrix1 = fMatrixall1{i,1};
+    fMatrix1 = CMN(fMatrix1);
+    Scores1(i) = myDTW(fMatrix1,rMatrix);
+end
+AllScores(:,9) = Scores1;
+
+Scores1 = zeros(1,N);
+s1 = load('Vectors10.mat');
+fMatrixall1 = struct2cell(s1);
+for i = 1:N
+    fMatrix1 = fMatrixall1{i,1};
+    fMatrix1 = CMN(fMatrix1);
+    Scores1(i) = myDTW(fMatrix1,rMatrix);
+end
+AllScores(:,10) = Scores1;
