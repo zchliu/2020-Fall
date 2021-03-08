@@ -17,7 +17,7 @@ Nbr1 = EIndex(1:1,:);
 Nbr2 = EIndex(1:2,:); 
 count = hist(Nbr1,unique(Nbr1));
 count = sort(count,'descend');
-if count(1) > count(2)
+if isscalar(count) || count(1) > count(2)
     Nbr = Nbr1;
 else
     Nbr = Nbr2;
